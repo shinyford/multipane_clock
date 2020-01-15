@@ -36,15 +36,16 @@ class PaperCogs extends ClockDefinition {
         height: screen.width * 0.55,
         cx: screen.width / 3,
         cy: screen.height / 2,
-        velocity: 3,
+        velocity: 9,
       ),
       Pane(
+        pendulumArc: 0.3,
         image: const AssetImage('assets/images/paper_cogs/cog2.png'),
         width: screen.width * 0.55,
         height: screen.width * 0.55,
         cx: screen.width * 2 / 3,
         cy: screen.height / 2,
-        velocity: -4,
+        velocity: -6,
       ),
       Pane(
         image: const AssetImage('assets/images/paper_cogs/cog1.png'),
