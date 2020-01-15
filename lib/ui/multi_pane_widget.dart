@@ -5,27 +5,24 @@ import 'package:flutter/material.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-const int _CLOCK_CHANGE_PERIOD_MS = 10 * 1000;
 const int _UPDATE_PERIOD_MS = 30;
 
-class MultipaneWidget extends StatefulWidget {
-  final List<ClockDefinition> clocks;
+class MultiPaneWidget extends StatefulWidget {
+  final ClockDefinition clock;
 
-  MultipaneWidget({this.clocks, Key key}) : super(key: key);
+  MultiPaneWidget({this.clock, Key key}) : super(key: key);
 
   @override
-  _MultipaneWidgetState createState() => _MultipaneWidgetState();
+  _MultiPaneWidgetState createState() => _MultiPaneWidgetState();
 }
 
-class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingObserver {
+class _MultiPaneWidgetState extends State<MultiPaneWidget> with WidgetsBindingObserver {
   Iterable<Pane> _panes;
   AngularClockTime _time;
   Timer _updateTimer;
-  int _clockIndex = 0;
   Rect _screen;
 
-  ClockDefinition get clock =>
-      widget.clocks[_clockIndex % widget.clocks.length];
+  ClockDefinition get clock => widget.clock;
 
   @override
   void initState() {
@@ -84,14 +81,8 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
     return Offset.zero & Size(width, height);
   }
 
-  void _updateTime(_) {
-    if (_time.millisecondsSinceEpoch % _CLOCK_CHANGE_PERIOD_MS < _UPDATE_PERIOD_MS) {
-      _clockIndex += 1;
-      _createPanes();
-    }
-
-    setState(() => _time = AngularClockTime(time: clock.now));
-  }
+  void _updateTime(_) =>
+      setState(() => _time = AngularClockTime(time: clock.now));
 
   @override
   Widget build(BuildContext context) =>
