@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:multipane_clock/multipane_clock.dart';
 
-const int _CHANGE_CLOCK_MS = 20;
-
 class MulticlockWidget extends StatefulWidget {
   final List<ClockDefinition> clocks;
 
@@ -15,13 +13,15 @@ class MulticlockWidget extends StatefulWidget {
 }
 
 class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBindingObserver {
+  static const int _CHANGE_CLOCK_SEC = 13;
+
   int _clockIndex = 0;
   Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: _CHANGE_CLOCK_MS), _updateClockIndex);
+    _timer = Timer.periodic(Duration(seconds: _CHANGE_CLOCK_SEC), _updateClockIndex);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -38,7 +38,7 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
 
     _timer?.cancel();
     if (state == AppLifecycleState.resumed) {
-      _timer = Timer.periodic(Duration(seconds: _CHANGE_CLOCK_MS), _updateClockIndex);
+      _timer = Timer.periodic(Duration(seconds: _CHANGE_CLOCK_SEC), _updateClockIndex);
     } else {
       _timer = null;
     }

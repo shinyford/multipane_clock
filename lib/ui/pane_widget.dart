@@ -4,9 +4,10 @@ import 'package:flutter/widgets.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-const double _TWO_PI = Math.pi * 2;
 
 class PaneWidget extends StatelessWidget {
+  static const double _TWO_PI = Math.pi * 2;
+
   final AngularClockTime time;
   final Pane pane;
 

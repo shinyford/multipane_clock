@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-const int _UPDATE_PERIOD_MS = 30;
 
 class MultipaneWidget extends StatefulWidget {
   final ClockDefinition clock;
@@ -17,6 +16,8 @@ class MultipaneWidget extends StatefulWidget {
 }
 
 class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingObserver {
+  static const int _UPDATE_PERIOD_MS = 30;
+
   Iterable<Pane> _panes;
   AngularClockTime _time;
   Timer _updateTimer;
