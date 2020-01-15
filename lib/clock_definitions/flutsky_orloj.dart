@@ -5,19 +5,15 @@ import 'package:timezone/standalone.dart';
 import 'package:multipane_clock/multipane_clock.dart';
 
 class FlutskyOrloj extends ClockDefinition {
-  Location _pragueTZ;
+  Location _prague;
 
   FlutskyOrloj() {
     initializeTimeZones();
-    _pragueTZ = getLocation('Europe/Prague');
+    _prague = getLocation('Europe/Prague');
   }
 
   @override
-  DateTime get now => TZDateTime.now(_pragueTZ);
-  // DateTime get now => TZDateTime(_pragueTZ, 2020, 12, 20, 16, 03);
-  // DateTime get now => TZDateTime(_pragueTZ, 2020, 6, 21, 21, 15);
-  // DateTime get now => TZDateTime(_pragueTZ, 2020, 3, 21, 18, 25);
-  // DateTime get now => TZDateTime(_pragueTZ, 2020, 9, 21, 18, 16);
+  DateTime get now => TZDateTime.now(_prague);
 
   @override
   Iterable<Pane> generate(Rect screen) =>
