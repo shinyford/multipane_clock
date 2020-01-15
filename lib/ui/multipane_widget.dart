@@ -7,16 +7,16 @@ import 'package:multipane_clock/multipane_clock.dart';
 
 const int _UPDATE_PERIOD_MS = 30;
 
-class MultiPaneWidget extends StatefulWidget {
+class MultipaneWidget extends StatefulWidget {
   final ClockDefinition clock;
 
-  MultiPaneWidget({this.clock, Key key}) : super(key: key);
+  MultipaneWidget({this.clock, Key key}) : super(key: key);
 
   @override
-  _MultiPaneWidgetState createState() => _MultiPaneWidgetState();
+  _MultipaneWidgetState createState() => _MultipaneWidgetState();
 }
 
-class _MultiPaneWidgetState extends State<MultiPaneWidget> with WidgetsBindingObserver {
+class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingObserver {
   Iterable<Pane> _panes;
   AngularClockTime _time;
   Timer _updateTimer;

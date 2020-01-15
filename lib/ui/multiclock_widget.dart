@@ -5,16 +5,16 @@ import 'package:multipane_clock/multipane_clock.dart';
 
 const int _CHANGE_CLOCK_MS = 20;
 
-class MultiClockWidget extends StatefulWidget {
+class MulticlockWidget extends StatefulWidget {
   final List<ClockDefinition> clocks;
 
-  MultiClockWidget({this.clocks, Key key}) : super(key: key);
+  MulticlockWidget({this.clocks, Key key}) : super(key: key);
 
   @override
-  _MultiClockWidgetState createState() => _MultiClockWidgetState();
+  _MulticlockWidgetState createState() => _MulticlockWidgetState();
 }
 
-class _MultiClockWidgetState extends State<MultiClockWidget> with WidgetsBindingObserver {
+class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBindingObserver {
   int _clockIndex = 0;
   Timer _timer;
 
@@ -50,6 +50,6 @@ class _MultiClockWidgetState extends State<MultiClockWidget> with WidgetsBinding
 
   @override
   Widget build(BuildContext context) {
-    return MultiPaneWidget(key: Key('Clock$_clockIndex'), clock: widget.clocks[_clockIndex]);
+    return MultipaneWidget(key: Key('Clock$_clockIndex'), clock: widget.clocks[_clockIndex]);
   }
 }

@@ -10,6 +10,6 @@ export 'models/pane.dart';
 export 'models/vector.dart';
 export 'models/unit_of_time.dart';
 
-export 'ui/multi_clock_widget.dart';
-export 'ui/multi_pane_widget.dart';
+export 'ui/multiclock_widget.dart';
+export 'ui/multipane_widget.dart';
 export 'ui/pane_widget.dart';

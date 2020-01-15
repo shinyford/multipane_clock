@@ -22,7 +22,7 @@ class MultipaneClockApp extends StatelessWidget {
       home: Center(
         child: AspectRatio(
           aspectRatio: 5 / 3,
-          child: MultiClockWidget(
+          child: MulticlockWidget(
             clocks: [
               PaperCogs(),
               TheUnobservantAstronaut(),
