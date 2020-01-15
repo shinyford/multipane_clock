@@ -9,9 +9,7 @@ import 'package:multipane_clock/multipane_clock.dart';
 class AngularClockTime {
   final DateTime _time;
 
-  AngularClockTime({DateTime time}) : _time = time ?? DateTime.now() {
-    // print(minute);
-  }
+  AngularClockTime({DateTime time}) : _time = time ?? DateTime.now();
 
   static const _DerivedAngle siderialDayAngle = const _DerivedAngle(
     period:  ((((23 * 60) + 56) * 60) + 4) * 1000 + 100.0, // siderial day in ms: 23°56'04.1"
