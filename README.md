@@ -22,7 +22,7 @@ Features:
 A child's bedroom clock.
 
 Features:
-- the wobble on the flying saucer, which makes use of a `Pane`'s pendulum capability (see below)
+- the wobble on the flying saucer, which makes use of a `Pane`'s `pendulumArc` to limit rotation to part of a circle (see below)
 - the various things in the sky, all of which use `Vector`s to offset themselves from their origin according to the current time.
 
 ### Flutsky Orloj

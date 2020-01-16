@@ -45,11 +45,11 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
   }
 
   void _updateClockIndex(_) {
-    setState(() => _clockIndex = (_clockIndex + 1) % widget.clocks.length);
+    setState(() => _clockIndex = (_clockIndex + 1) ); //% widget.clocks.length);
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultipaneWidget(key: Key('Clock$_clockIndex'), clock: widget.clocks[_clockIndex]);
+    return MultipaneWidget(key: Key('Clock$_clockIndex'), clock: widget.clocks[_clockIndex % widget.clocks.length]);
   }
 }

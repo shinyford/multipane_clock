@@ -6,10 +6,7 @@ class Pane {
   final Iterable<Vector> vectors;
   final UnitOfTime unitOfTime;
   final int velocity;
-  final double height;
-  final double width;
-  final double cx;
-  final double cy;
+  final Offset position;
   final double angularOffset;
   final double pendulumArc;
   final double pendulumOffset;
@@ -27,12 +24,11 @@ class Pane {
     this.showFrom = 0,
     this.showTo = 1,
     @required AssetImage image,
-    @required this.cx,
-    @required this.cy,
-    @required this.width,
-    @required this.height,
+    @required Size size,
+    @required Offset center,
   }) :
-    this.image = Image(image: image, width: width, height: height);
+    this.image = Image(image: image, width: size.width, height: size.height),
+    this.position = center - size.center(Offset.zero);
 
   bool get isOffset => vectors is Iterable;
   bool get isRotating => velocity != 0;

@@ -30,19 +30,17 @@ class PaneWidget extends StatelessWidget {
     );
 
   Offset _panePosition() {
-    double x = pane.cx;
-    double y = pane.cy;
+    Offset position = pane.position;
 
     if (pane.isOffset) {
       double cumulativeAngle = 0;
 
       for (Vector vector in pane.vectors) {
-        cumulativeAngle += vector.angleFor(time) * _TWO_PI;
-        x += vector.xOffsetFor(cumulativeAngle);
-        y += vector.yOffsetFor(cumulativeAngle);
+        cumulativeAngle += vector.angleFor(time);
+        position += vector.offsetFor(cumulativeAngle);
       }
     }
 
-    return Offset(x - pane.width / 2, y - pane.height / 2);
+    return position;
   }
 }
