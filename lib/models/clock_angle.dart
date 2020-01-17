@@ -3,6 +3,19 @@ import 'package:multipane_clock/multipane_clock.dart';
 
 typedef AngleFunction = double Function(DateTime time);
 
+/*
+ * `ClockAngle`
+ *
+ * A container for a function that will return an angle for a given `DateTime` instant
+ * to answer the question: if I were a hand on a clock, what angle would I point at?
+ *
+ * This makes it a bit anti-intuitive, since hands for a given time unit take the next higher
+ * unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes
+ * an hour; an hour hand takes a meridien; and so on, at least conceptually.
+ *
+ * Most `ClockAngle`s will simply wrap an `AngleCalculator`. Some, notably the bouncy timings,
+ * slightly different methods.
+ */
 class ClockAngle {
   final AngleFunction at;
 
@@ -42,7 +55,7 @@ class ClockAngle {
 
   static ClockAngle siderialDay = ClockAngle(
     calculator: AngleCalculator(
-      period: Duration(milliseconds: ((((23 * 60) + 56) * 60) + 4) * 1000 + 100), // siderial day in ms: 23°56'04.1"
+      period: Duration(hours: 23, minutes: 56, seconds: 4, milliseconds: 100), // siderial day in ms: 23°56'04.1"
       adjustment:  0.07, // adjustment angle needed to push the siderial day to the right orientation
     ),
   );
@@ -53,10 +66,15 @@ class ClockAngle {
     ),
   );
   static ClockAngle dayOfYear = ClockAngle(
-    calculator: AngleCalculator(
-      period: Duration(milliseconds: 36525 * 24 * 60 * 60 * 10), // a year (365.25d) in ms TODO this should work out leap years explicitly
-      adjustment:  0.5, // adjustment angle needed to push the year dial to the right orientation
-    ),
+    function: (DateTime time) {
+      const List<int> months = [0, -1, 30, 58, 89, 119, 150, 180, 211, 242, 272, 303, 333];
+      double day = months[time.month] + time.day + ClockAngle.hour24.at(time);
+      if (time.year % 4 == 0) { // leap year
+        if (day > 59) day += 1;
+        return day / 366;
+      }
+      return day / 365;
+    }
   );
 
   // keeps the value at zero until a sudden ramp up right at the end.

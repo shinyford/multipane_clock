@@ -2,7 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-class TheUnobservantAstronaut extends ClockDefinition {
+/*
+ * `TheUnobservantAstronaut`
+ *
+ * A child's bedroom clockface showing an animated space scene
+ */
+class TheUnobservantAstronaut extends Clockface {
 
   @override
   Iterable<Pane> generate(Rect screen) =>

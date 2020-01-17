@@ -4,7 +4,14 @@ import 'package:timezone/standalone.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-class FlutskyOrloj extends ClockDefinition {
+/*
+ * `Flutsky Orloj`
+ *
+ * A simulation of the Pražský Orloj astronomical clock in Prague.
+ *
+ * Note that this clockface is fixed to Prague time.
+ */
+class FlutskyOrloj extends Clockface {
   Location _prague;
 
   FlutskyOrloj() {
@@ -13,7 +20,7 @@ class FlutskyOrloj extends ClockDefinition {
   }
 
   @override
-  DateTime get now => TZDateTime.now(_prague);
+  DateTime get time => TZDateTime.now(_prague);
 
   @override
   Iterable<Pane> generate(Rect screen) =>

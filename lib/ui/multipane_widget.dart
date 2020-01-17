@@ -7,9 +7,9 @@ import 'package:multipane_clock/multipane_clock.dart';
 
 
 class MultipaneWidget extends StatefulWidget {
-  final ClockDefinition clock;
+  final Clockface face;
 
-  MultipaneWidget({this.clock, Key key}) : super(key: key);
+  MultipaneWidget({this.face, Key key}) : super(key: key);
 
   @override
   _MultipaneWidgetState createState() => _MultipaneWidgetState();
@@ -23,7 +23,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   Timer _updateTimer;
   Rect _screen;
 
-  ClockDefinition get clock => widget.clock;
+  Clockface get face => widget.face;
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
     // deal with foregrounding/backgrounding via `didChangeAppLifecycleState` method
     WidgetsBinding.instance.addObserver(this);
 
-    _time = clock.now;
+    _time = face.time;
     _updateTimer = _createUpdateTimer();
   }
 
@@ -65,7 +65,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   void _createPanes() {
     final Size size = MediaQuery.of(context).size;
     _screen = _availableScreen(size);
-    _panes = clock.generate(_screen);
+    _panes = face.generate(_screen);
   }
 
   Rect _availableScreen(Size size) {
@@ -83,7 +83,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   }
 
   void _updateTime(_) =>
-      setState(() => _time = clock.now);
+      setState(() => _time = face.time);
 
   @override
   Widget build(BuildContext context) =>

@@ -6,7 +6,7 @@ export 'clock_definitions/paper_cogs.dart';
 
 export 'models/angle_calculator.dart';
 export 'models/clock_angle.dart';
-export 'models/clock_definition.dart';
+export 'models/clockface.dart';
 export 'models/pane.dart';
 export 'models/vector.dart';
 

@@ -2,6 +2,19 @@ import 'package:flutter/widgets.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
+/*
+ * `Pane`
+ *
+ * A container for an image which can be rotated and offset from its start position
+ * when rendered.
+ *
+ * `Iterable<Vector> vectors`: one or more offsets from the start position, angled according to the time
+ * `Rotation rotation`: the rotation of the image when finally rendered
+ * `AssetImage image`: the image to render for the pane
+ * `Size size`: the size of the image when rendered. Not necessarily the same as that of the image itself;
+ * however, aspect ration should be kept the same
+ * `Offset center`: the initial position of the center of the image, before vectors are applied
+ */
 class Pane {
   final Iterable<Vector> vectors;
   final Offset position;
@@ -27,7 +40,7 @@ class Pane {
       double cumulativeAngle = 0;
 
       for (Vector vector in vectors) {
-        cumulativeAngle += vector.angleFor(time);
+        cumulativeAngle += vector.angleAt(time);
         position += vector.offsetFor(cumulativeAngle);
       }
     }
@@ -35,6 +48,6 @@ class Pane {
     return position;
   }
 
-  double angleFor(DateTime time) =>
-      rotation?.angleFor(time) ?? 0;
+  double angleAt(DateTime time) =>
+      rotation?.angleAt(time) ?? 0;
 }

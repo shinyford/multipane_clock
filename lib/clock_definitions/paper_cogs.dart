@@ -2,7 +2,12 @@ import 'package:flutter/widgets.dart';
 
 import 'package:multipane_clock/multipane_clock.dart';
 
-class PaperCogs extends ClockDefinition {
+/*
+ * `PaperCogs`
+ *
+ * A clockface showing the current time against a background of moving, paper cogs
+ */
+class PaperCogs extends Clockface {
 
   @override
   Iterable<Pane> generate(Rect screen) =>

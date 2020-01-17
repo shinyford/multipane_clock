@@ -25,7 +25,7 @@ class PaneWidget extends StatelessWidget {
 
   Widget get _rotatedPane =>
     Transform.rotate(
-      angle: pane.angleFor(time) * _TWO_PI,
+      angle: pane.angleAt(time) * _TWO_PI,
       child: pane.image,
     );
 }

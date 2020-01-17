@@ -4,12 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:multipane_clock/multipane_clock.dart';
 
 class MulticlockWidget extends StatefulWidget {
-  final List<ClockDefinition> clocks;
-  final Duration showClockFor;
+  final List<Clockface> faces;
+  final Duration faceTime;
 
   MulticlockWidget({
-    this.clocks,
-    this.showClockFor = const Duration(seconds: 13),
+    this.faces,
+    this.faceTime = const Duration(seconds: 13),
     Key key
   }) : super(key: key);
 
@@ -24,7 +24,7 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(widget.showClockFor, _updateClockIndex);
+    _timer = Timer.periodic(widget.faceTime, _updateClockIndex);
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -41,7 +41,7 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
 
     _timer?.cancel();
     if (state == AppLifecycleState.resumed) {
-      _timer = Timer.periodic(widget.showClockFor, _updateClockIndex);
+      _timer = Timer.periodic(widget.faceTime, _updateClockIndex);
     } else {
       _timer = null;
     }
@@ -53,6 +53,6 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
 
   @override
   Widget build(BuildContext context) {
-    return MultipaneWidget(key: Key('Clock$_clockIndex'), clock: widget.clocks[_clockIndex % widget.clocks.length]);
+    return MultipaneWidget(key: Key('Clock$_clockIndex'), face: widget.faces[_clockIndex % widget.faces.length]);
   }
 }

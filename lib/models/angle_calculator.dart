@@ -1,5 +1,15 @@
 import 'package:meta/meta.dart';
 
+/*
+ * `AngleCalculator`
+ *
+ * A calculator for the proportion of a `period` that has passed at a given `DateTime` instant
+ * using what is effectively floating point clock arithmetic (no pun intended).
+ *
+ * `Duration period`: the period in question
+ * `double adjustment`: an adjustment to the resultant proportion that has passed, to allow for the fact
+ * that the Epoch against which it's checked does not necessarily lie on the `period`'s boundary.
+ */
 class AngleCalculator {
   final Duration period;
   final double adjustment;
