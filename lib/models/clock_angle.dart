@@ -42,19 +42,19 @@ class ClockAngle {
 
   static ClockAngle siderialDay = ClockAngle(
     calculator: AngleCalculator(
-      period:  Duration(milliseconds: ((((23 * 60) + 56) * 60) + 4) * 1000 + 100), // siderial day in ms: 23°56'04.1"
+      period: Duration(milliseconds: ((((23 * 60) + 56) * 60) + 4) * 1000 + 100), // siderial day in ms: 23°56'04.1"
       adjustment:  0.07, // adjustment angle needed to push the siderial day to the right orientation
     ),
   );
   static ClockAngle lunarDay = ClockAngle(
     calculator: AngleCalculator(
-      period:  Duration(milliseconds: 2953 * 24 * 60 * 60 * 10), // lunar day in ms: 29.53d
+      period: Duration(milliseconds: 2953 * 24 * 60 * 60 * 10), // lunar day in ms: 29.53d
       adjustment:  0.39, // adjustment angle needed to push the lunar day to the right orientation
     ),
   );
   static ClockAngle dayOfYear = ClockAngle(
     calculator: AngleCalculator(
-      period:  Duration(milliseconds: 36525 * 24 * 60 * 60 * 10), // a year in ms TODO this should work out leap years explicitly
+      period: Duration(milliseconds: 36525 * 24 * 60 * 60 * 10), // a year (365.25d) in ms TODO this should work out leap years explicitly
       adjustment:  0.5, // adjustment angle needed to push the year dial to the right orientation
     ),
   );

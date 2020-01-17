@@ -87,10 +87,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
 
   @override
   Widget build(BuildContext context) =>
-      Stack(children: _panes.where(_shouldShow).map(_pane).toList(growable: false));
-
-  bool _shouldShow(Pane pane) =>
-      pane.shouldShowFor(_time);
+      Stack(children: _panes.map(_pane).toList(growable: false));
 
   Widget _pane(Pane pane) =>
       PaneWidget(time: _time, pane: pane);
