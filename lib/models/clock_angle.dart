@@ -7,14 +7,16 @@ typedef AngleFunction = double Function(DateTime time);
  * `ClockAngle`
  *
  * A container for a function that will return an angle for a given `DateTime` instant
- * to answer the question: if I were a hand on a clock, what angle would I point at?
+ * to answer the question: what proportion of a given period of time has passed at a
+ * particular `DateTime` point in time? More simply: if I were a hand on a clock, how
+ * much of the clock face would I have traversed? What would I be pointing at?
  *
- * This makes it a bit anti-intuitive, since hands for a given time unit take the next higher
- * unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes
- * an hour; an hour hand takes a meridien; and so on, at least conceptually.
+ * Static instances are provided for commonly needed angles: `second`, `minute`, `hour`
+ * etc. More esoteric `ClockAngle`s for siderial day, lunar day and day of year are also
+ * available.
  *
- * Most `ClockAngle`s will simply wrap an `AngleCalculator`. Some, notably the bouncy timings,
- * slightly different methods.
+ * Some 'bouncy' instances are also provided, giving a delayed change in angle to mimic
+ * the movement of watch hands and e.g. am/pm discs.
  */
 class ClockAngle {
   static const List<int> _DAYS_BEFORE = [0, -1, 30, 58, 89, 119, 150, 180, 211, 242, 272, 303, 333];

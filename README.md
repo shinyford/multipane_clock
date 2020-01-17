@@ -37,15 +37,38 @@ Features:
 
 ## Components
 
-### `AngularClockTime`
+### `ClockAngle`
 
-A wrapper for a `DateTime` instance which exposes its entities - `millisecond`, `second`, `minute` etc. - as values in the range 0 <= x < 1, representing how many of the entities have passed since the start of the next higher entity, as a fraction. For example, 32 seconds would be expressed as 32 / 60, since 32 60ths of the current minute have passed.
+ A container for a function that will return an angle for a given `DateTime` instant
+ to answer the question: what proportion of a given period of time has passed at a particular `DateTime` point in time? More simply: if I were a hand on a clock, how much of the clock face would I have traversed? What would I be pointing at?
 
-In other words, for any given entity it answers the question: what angle would my hand be pointing at, if shown on a clock face?
+ Static instances are provided for commonly needed angles: `second`, `minute`, `hour` etc. More esoteric `ClockAngle`s for siderial day, lunar day and day of year are also available.
 
->Note that throughout this project angles are represented in a somewhat unorthodox manner, as fractions of a full circle: 0 <= angle < 1 (they are only converted to radians in widgets at the point of rendering). This allows angles and `AngularClockTime` entities to be used roughly interchangeably.
+ Some 'bouncy' instances are also provided, giving a delayed change in angle to mimic the movement of watch hands and e.g. am/pm discs.
 
-`AngularClockTime` exposes a few extra fields too, notably a `bouncySecond` which provides a delayed, damped bounce to its second value, enabling the nice, clunky motion of the second hand on the Paper Cogs clock.
+ > The naming of these instances is a bit anti-intuitive, since hands for a given time unit take the next higher unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes an hour; an hour hand takes a meridien; and so on (at least conceptually).
+
+ Most `ClockAngle`s will simply wrap an `AngleCalculator`. Some, notably the bouncy and `dayOfYear` timings, have more specialised methods.
+
+>Note that throughout this project angles are represented in a somewhat unorthodox manner, as fractions of a full circle: 0 <= angle < 1 (they are only converted to radians in widgets at the point of rendering). This allows proportions of time periods and calculated angles to be used interchangeably.
+
+### `AngleCalculator`
+
+A calculator for the proportion of a `period` that has passed at a given `DateTime` instant using what is effectively floating point clock arithmetic (no pun intended).
+
+### `Pane`
+
+A container for an image which can be rotated and offset from its start position when rendered. Offsets are defined as lists of `Vector`s.
+
+### `Vector`
+
+A representation of an offset from a current position, comprising a distance and an angle calculated from a `DateTime` instance.
+
+`Vector`s by default rotate continually in a circle; but by specifying an arc, the proportion of a circle to cover, a `Vector` can be made to oscillate back and forth across that segment of the full circle as per a pendulum.
+
+### `Rotation`
+
+A specialisation of a `Vector`, with zero offset, used to specify the rotation of a pane's image during rendering.
 
 ## Licenses
 

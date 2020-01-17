@@ -22,9 +22,8 @@ void main() {
     });
 
     test('values returned can be shifted', () {
-      final int secs = 16;
       final AngleCalculator calc = AngleCalculator(
-        period: Duration(seconds: secs),
+        period: Duration(seconds: 16),
         adjustment: 0.25,
       );
       final DateTime dt = DateTime(2019, 1, 1, 0, 0, 0);
