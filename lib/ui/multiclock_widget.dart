@@ -1,3 +1,6 @@
+// Copyright (c) 2020, Nic Ford.  All rights reserved. Use of this source code is
+// governed by an Apache-2.0 license that can be found in the LICENSE file.
+
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
@@ -24,7 +27,7 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(widget.faceTime, _updateClockIndex);
+    _timer = _createTimer();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -41,11 +44,14 @@ class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBinding
 
     _timer?.cancel();
     if (state == AppLifecycleState.resumed) {
-      _timer = Timer.periodic(widget.faceTime, _updateClockIndex);
+      _timer = _createTimer();
     } else {
       _timer = null;
     }
   }
+
+  Timer _createTimer() =>
+      Timer.periodic(widget.faceTime, _updateClockIndex);
 
   void _updateClockIndex(_) {
     setState(() => _clockIndex = (_clockIndex + 1) ); //% widget.clocks.length);

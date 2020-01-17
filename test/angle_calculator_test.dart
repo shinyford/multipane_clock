@@ -1,3 +1,6 @@
+// Copyright (c) 2020, Nic Ford.  All rights reserved. Use of this source code is
+// governed by an Apache-2.0 license that can be found in the LICENSE file.
+
 import 'package:test/test.dart';
 
 import 'package:multipane_clock/models/angle_calculator.dart';
