@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:multipane_clock/multipane_clock.dart';
 
 class TheUnobservantAstronaut extends ClockDefinition {
+  final ClockAngle threeMinutes =
+      ClockAngle(calculator: AngleCalculator(period: Duration(minutes: 3)));
 
   @override
   Iterable<Pane> generate(Rect screen) =>
@@ -23,23 +25,78 @@ class TheUnobservantAstronaut extends ClockDefinition {
       Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/rocket.png'),
         size: Size(screen.width * 0.2, screen.width * 0.4),
-        center: Offset(screen.width / 2, screen.height * 0.6),
-        velocity: -2,
-        showTo: 0.5,
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: -6, // -2 * 3
+        showTo: 1 / 6,
+        unitOfTime: threeMinutes,
         vectors: [
           Vector(distance: screen.height / 2, velocity: 2)
         ],
       ),
       Pane(
+        image: const AssetImage('assets/images/unobservant_astronaut/rocket.png'),
+        size: Size(screen.width * 0.2, screen.width * 0.4),
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: 6, // -2 * 3
+        showFrom: 3 / 6,
+        showTo: 4 / 6,
+        unitOfTime: threeMinutes,
+        angularOffset: 0.25,
+        vectors: [
+          Vector(distance: screen.height / 2, velocity: -2)
+        ],
+      ),
+      Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/saucer.png'),
         size: Size(screen.width * 0.2, screen.width * 0.1),
-        center: Offset(screen.width / 2, screen.height * 0.6),
-        velocity: 15,
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: 45, // 15 * 3
         pendulumArc: 0.2,
         pendulumOffset: -0.1,
-        showFrom: 0.5,
+        showFrom: 1 / 6,
+        showTo: 2 / 6,
+        unitOfTime: threeMinutes,
         vectors: [
           Vector(distance: screen.height / 2, velocity: -2, angularOffset: 0.5)
+        ],
+      ),
+      Pane(
+        image: const AssetImage('assets/images/unobservant_astronaut/saucer.png'),
+        size: Size(screen.width * 0.2, screen.width * 0.1),
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: -45, // 15 * 3
+        pendulumArc: 0.2,
+        pendulumOffset: -0.1,
+        showFrom: 4 / 6,
+        showTo: 5 / 6,
+        unitOfTime: threeMinutes,
+        vectors: [
+          Vector(distance: screen.height / 2, velocity: 2, angularOffset: 0.5)
+        ],
+      ),
+      Pane(
+        image: const AssetImage('assets/images/unobservant_astronaut/spacenaut.png'),
+        size: Size(screen.width * 0.1, screen.width * 0.1),
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: 45,
+        showFrom: 2 / 6,
+        showTo: 3 / 6,
+        unitOfTime: threeMinutes,
+        vectors: [
+          Vector(distance: screen.height / 2, velocity: 2),
+          Vector(distance: screen.height / 12, velocity: 24),
+        ],
+      ),
+      Pane(
+        image: const AssetImage('assets/images/unobservant_astronaut/spacenaut.png'),
+        size: Size(screen.width * 0.1, screen.width * 0.1),
+        center: Offset(screen.width / 2, screen.height * 0.75),
+        velocity: -45,
+        showFrom: 5 / 6,
+        unitOfTime: threeMinutes,
+        vectors: [
+          Vector(distance: screen.height / 2, velocity: -2),
+          Vector(distance: screen.height / 12, velocity: -24),
         ],
       ),
       Pane(
@@ -48,16 +105,16 @@ class TheUnobservantAstronaut extends ClockDefinition {
         center: Offset(screen.width / 2, screen.height / 2),
         velocity: 0,
       ),
-      Pane(
-        image: const AssetImage('assets/images/unobservant_astronaut/spacenaut.png'),
-        size: Size(screen.height * 0.1, screen.height * 0.1),
-        center: Offset(screen.width / 2, screen.height / 2.5),
-        velocity: 32,
-        vectors: [
-          Vector(distance: screen.height / 3, velocity: -1),
-          Vector(distance: screen.height / 10, velocity: 11),
-        ]
-      ),
+      // Pane(
+      //   image: const AssetImage('assets/images/unobservant_astronaut/spacenaut.png'),
+      //   size: Size(screen.height * 0.1, screen.height * 0.1),
+      //   center: Offset(screen.width / 2, screen.height / 2.5),
+      //   velocity: 32,
+      //   vectors: [
+      //     Vector(distance: screen.height / 3, velocity: -1),
+      //     Vector(distance: screen.height / 10, velocity: 11),
+      //   ]
+      // ),
       Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/moonnaut.png'),
         size: Size(screen.height, screen.height),
