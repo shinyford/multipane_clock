@@ -12,13 +12,13 @@ class TheUnobservantAstronaut extends ClockDefinition {
         size: Size(screen.width * 2, screen.width * 2),
         center: Offset(screen.width / 2, screen.height),
         velocity: -12,
-        unitOfTime: UnitOfTime.minute,
+        unitOfTime: ClockAngle.minute,
       ),
       Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/hour.png'),
         size: Size(screen.width * 1.07, screen.width * 1.07),
         center: Offset(screen.width / 2, screen.height * 0.9),
-        unitOfTime: UnitOfTime.hour24
+        unitOfTime: ClockAngle.hour24
       ),
       Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/rocket.png'),

@@ -59,19 +59,19 @@ class PaperCogs extends ClockDefinition {
         image: const AssetImage('assets/images/paper_cogs/second.png'),
         size: Size(screen.height * 0.9, screen.height * 0.9),
         center: Offset(screen.width / 2, screen.height / 2),
-        unitOfTime: UnitOfTime.bouncySecond,
+        unitOfTime: ClockAngle.bouncySecond,
       ),
       Pane(
         image: const AssetImage('assets/images/paper_cogs/minute.png'),
         size: Size(screen.height, screen.height),
         center: Offset(screen.width / 2, screen.height / 2),
-        unitOfTime: UnitOfTime.minute,
+        unitOfTime: ClockAngle.minute,
       ),
       Pane(
         image: const AssetImage('assets/images/paper_cogs/hour.png'),
         size: Size(screen.height, screen.height),
         center: Offset(screen.width / 2, screen.height / 2),
-        unitOfTime: UnitOfTime.hour,
+        unitOfTime: ClockAngle.hour,
       ),
       // Pane( // Bouncing hourglass, to demonstrate the use of vectors
       //   image: const AssetImage('assets/images/paper_cogs/hourglass.png'),

@@ -19,7 +19,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   static const int _UPDATE_PERIOD_MS = 30;
 
   Iterable<Pane> _panes;
-  AngularClockTime _time;
+  DateTime _time;
   Timer _updateTimer;
   Rect _screen;
 
@@ -32,7 +32,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
     // deal with foregrounding/backgrounding via `didChangeAppLifecycleState` method
     WidgetsBinding.instance.addObserver(this);
 
-    _time = AngularClockTime(time: clock.now);
+    _time = clock.now;
     _updateTimer = _createUpdateTimer();
   }
 
@@ -83,7 +83,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   }
 
   void _updateTime(_) =>
-      setState(() => _time = AngularClockTime(time: clock.now));
+      setState(() => _time = clock.now);
 
   @override
   Widget build(BuildContext context) =>

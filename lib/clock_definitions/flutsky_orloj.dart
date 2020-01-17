@@ -23,7 +23,7 @@ class FlutskyOrloj extends ClockDefinition {
         size: Size(screen.width * 1.2, screen.width * 1.2),
         center: Offset(screen.width / 2, screen.height / 2),
         velocity: 6,
-        unitOfTime: UnitOfTime.minute,
+        unitOfTime: ClockAngle.minute,
       ),
       Pane(
         image: const AssetImage('assets/images/flutsky_orloj/main_dial.png'),
@@ -38,22 +38,22 @@ class FlutskyOrloj extends ClockDefinition {
         image: const AssetImage('assets/images/flutsky_orloj/old_czech.png'),
         size: Size(screen.height, screen.height),
         center: Offset(screen.width / 2, screen.height / 2),
-        // unitOfTime: UnitOfTime.dayOfYear
-        velocity: 15
+        // clockAngle: ClockAngle.dayOfYear,
+        velocity: 15,
       ),
       Pane(
         image: const AssetImage('assets/images/flutsky_orloj/time_hand.png'),
         size: Size(screen.height * 0.85, screen.height * 0.85),
         center: Offset(screen.width / 2, screen.height / 2),
-        unitOfTime: UnitOfTime.hour24
+        unitOfTime: ClockAngle.hour24
       ),
       Pane(
         image: const AssetImage('assets/images/flutsky_orloj/small_dial.png'),
         size: Size(screen.height / 1.42, screen.height / 1.42),
         center: Offset(screen.width / 2, screen.height / 2),
-        unitOfTime: UnitOfTime.siderialDay,
+        unitOfTime: ClockAngle.siderialDay,
         vectors: [
-          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: UnitOfTime.siderialDay),
+          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: ClockAngle.siderialDay),
         ]
       ),
       Pane(
@@ -61,8 +61,8 @@ class FlutskyOrloj extends ClockDefinition {
         size: Size(screen.height / 8, screen.height / 8),
         center: Offset(screen.width / 2, screen.height / 2),
         vectors: [
-          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: UnitOfTime.siderialDay),
-          Vector(distance: screen.height / -3.9, velocity: 1, unitOfTime: UnitOfTime.dayOfYear),
+          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: ClockAngle.siderialDay),
+          Vector(distance: screen.height / -3.9, velocity: 1, unitOfTime: ClockAngle.dayOfYear),
         ]
       ),
       Pane(
@@ -71,8 +71,8 @@ class FlutskyOrloj extends ClockDefinition {
         center: Offset(screen.width / 2, screen.height / 2),
         velocity: 0,
         vectors: [
-          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: UnitOfTime.siderialDay),
-          Vector(distance: screen.height / -3.9, velocity: 1, unitOfTime: UnitOfTime.lunarDay),
+          Vector(distance: screen.height / -8.8, velocity: -1, unitOfTime: ClockAngle.siderialDay),
+          Vector(distance: screen.height / -3.9, velocity: 1, unitOfTime: ClockAngle.lunarDay),
         ]
       ),
     ];
