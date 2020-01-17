@@ -23,9 +23,10 @@ class MultipaneClockApp extends StatelessWidget {
         child: AspectRatio(
           aspectRatio: 5 / 3,
           child: MulticlockWidget(
+            showClockFor: Duration(seconds: 13),
             clocks: [
-              // PaperCogs(),
-              // TheUnobservantAstronaut(),
+              PaperCogs(),
+              TheUnobservantAstronaut(),
               FlutskyOrloj(),
             ]
           ),
