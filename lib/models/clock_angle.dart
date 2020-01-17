@@ -17,6 +17,8 @@ typedef AngleFunction = double Function(DateTime time);
  * slightly different methods.
  */
 class ClockAngle {
+  static const List<int> _DAYS_BEFORE = [0, -1, 30, 58, 89, 119, 150, 180, 211, 242, 272, 303, 333];
+
   final AngleFunction at;
 
   ClockAngle({AngleCalculator calculator, AngleFunction function}) : this.at = function ?? calculator.calculation;
@@ -55,22 +57,21 @@ class ClockAngle {
 
   static ClockAngle siderialDay = ClockAngle(
     calculator: AngleCalculator(
-      period: Duration(hours: 23, minutes: 56, seconds: 4, milliseconds: 100), // siderial day in ms: 23°56'04.1"
+      period: const Duration(hours: 23, minutes: 56, seconds: 4, milliseconds: 100), // siderial day: 23°56'04.1"
       adjustment:  0.07, // adjustment angle needed to push the siderial day to the right orientation
     ),
   );
   static ClockAngle lunarDay = ClockAngle(
     calculator: AngleCalculator(
-      period: Duration(milliseconds: 2953 * 24 * 60 * 60 * 10), // lunar day in ms: 29.53d
-      adjustment:  0.39, // adjustment angle needed to push the lunar day to the right orientation
+      period: const Duration(days: 29, hours: 12, minutes: 44, seconds: 3), // lunar day: 29.53d
+      adjustment:  0.41, // adjustment angle needed to push the lunar day to the right orientation
     ),
   );
   static ClockAngle dayOfYear = ClockAngle(
     function: (DateTime time) {
-      const List<int> months = [0, -1, 30, 58, 89, 119, 150, 180, 211, 242, 272, 303, 333];
-      double day = months[time.month] + time.day + ClockAngle.hour24.at(time);
+      double day = _DAYS_BEFORE[time.month] + time.day + ClockAngle.hour24.at(time);
       if (time.year % 4 == 0) { // leap year
-        if (day > 59) day += 1;
+        if (time.month > 2) day += 1;
         return day / 366;
       }
       return day / 365;

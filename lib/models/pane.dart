@@ -17,9 +17,9 @@ import 'package:multipane_clock/multipane_clock.dart';
  */
 class Pane {
   final Iterable<Vector> vectors;
+  final Rotation rotation;
   final Offset position;
   final Image image;
-  final Rotation rotation;
 
   Pane({
     this.vectors,
