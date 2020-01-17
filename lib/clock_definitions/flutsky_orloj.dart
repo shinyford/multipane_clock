@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+
 import 'package:timezone/data/latest.dart';
 import 'package:timezone/standalone.dart';
 
@@ -64,14 +65,13 @@ class FlutskyOrloj extends Clockface {
         center: Offset(screen.width / 2, screen.height / 2),
         vectors: [
           Vector(radius: screen.height / -8.8, velocity: -1, unitOfTime: ClockAngle.siderialDay),
-          Vector(radius: screen.height / -3.9, velocity: 1, unitOfTime: ClockAngle.dayOfYear),
+          Vector(radius: screen.height / -3.9, velocity: 1, unitOfTime: ClockAngle.dayOfYear, angularOffset: 0.51),
         ]
       ),
       Pane(
         image: const AssetImage('assets/images/flutsky_orloj/moon.png'),
         size: Size(screen.height / 8, screen.height / 8),
         center: Offset(screen.width / 2, screen.height / 2),
-        rotation: Rotation(velocity: 0),
         vectors: [
           Vector(radius: screen.height / -8.8, velocity: -1, unitOfTime: ClockAngle.siderialDay),
           Vector(radius: screen.height / -3.9, velocity: 1, unitOfTime: ClockAngle.lunarDay),
