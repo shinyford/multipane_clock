@@ -112,14 +112,14 @@ void main() {
         expect(angle, 0.0);
       });
 
-      test('bouncyDay is zero at 23:58', () {
-        final DateTime dt = DateTime(2020, 1, 1, 23, 58);
+      test('bouncyDay is zero at 23:59', () {
+        final DateTime dt = DateTime(2020, 1, 1, 23, 59);
         final double angle = ClockAngle.bouncyDay.at(dt);
         expect(angle, 0.0);
       });
 
-      test('bouncyDay is not zero at 23:59', () {
-        final DateTime dt = DateTime(2020, 1, 1, 23, 59);
+      test('bouncyDay is not zero at 23:59:01', () {
+        final DateTime dt = DateTime(2020, 1, 1, 23, 59, 1);
         final double angle = ClockAngle.bouncyDay.at(dt);
         expect(angle > 0.0, true);
       });
