@@ -19,8 +19,8 @@ class MulticlockWidget extends StatefulWidget {
 }
 
 class _MulticlockWidgetState extends State<MulticlockWidget> {
-  int _clockIndex = 0;
   InForegroundRepeater _repeater;
+  int _faceIndex = 0;
 
   @override
   void initState() {
@@ -35,11 +35,10 @@ class _MulticlockWidgetState extends State<MulticlockWidget> {
   }
 
   void _updateClockIndex(_) {
-    setState(() => _clockIndex = (_clockIndex + 1) ); //% widget.clocks.length);
+    setState(() => _faceIndex = (_faceIndex + 1) % widget.faces.length);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return MultipaneWidget(key: Key('Clock$_clockIndex'), face: widget.faces[_clockIndex % widget.faces.length]);
-  }
+  Widget build(BuildContext context) =>
+      MultipaneWidget(key: Key('Clockface$_faceIndex'), face: widget.faces[_faceIndex]);
 }
