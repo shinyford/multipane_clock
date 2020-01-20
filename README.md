@@ -40,7 +40,7 @@ A simulation of the [Pražský Orloj, or Prague Astronomical Clock](http://www.o
 
  Some 'bouncy' instances are also provided, giving a delayed change in angle to mimic the movement of watch hands and e.g. am/pm discs.
 
- >The naming of these instances is possibly a bit confusing, since hands for a given time unit take the next higher unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes an hour; an hour hand takes a meridien; and so on (at least conceptually).
+ >The naming of these static instances is possibly a bit confusing, since hands for a given time unit take the next higher unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes an hour; an hour hand takes a meridien; and so on (at least conceptually). So a `Rotation` with a `unitOfTime: ClockAngle.second` will actually take a minute to rotate a full circle, since that's how long it would take a second hand to do so.
 
 >Note that throughout this project angles are represented in a somewhat unorthodox manner, as fractions of a full circle: 0 <= angle < 1, which allows proportions of time periods and calculated angles to be used interchangeably. These circadian angles (well, it's a name) are only converted to radians at the point of rendering or trigonometric calculation.
 
@@ -80,7 +80,7 @@ All images are licensed for reuse with modification. Where not listed below, ima
   - Dials, hands, sun, moon: https://publicdomainvectors.org/en/free-clipart/Prague-astronomical-clock/72025.html
   - Time hand: https://www.publicdomainpictures.net/en/view-image.php?image=174632&picture=hand-pointing-out
   - Night sky: https://www.pxfuel.com/en/free-photo-qllfa
-- Moon Clock
+- The Unobservant Astronaut
   - Astronaut standing on moon: https://www.pxfuel.com/en/free-photo-qllfm
   - Rocket and night sky: https://www.pxfuel.com/en/free-photo-qllfa
   - Flying saucer: https://www.needpix.com/photo/171539/ufo-alien-extraterrestrial-green-flying-saucer-spaceship

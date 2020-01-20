@@ -22,6 +22,8 @@ import 'package:multipane_clock/multipane_clock.dart';
  * an ellipse rather than a perfect circle.
  * `double pendulumArc`: the portion of a circle covered by a vector, if not full
  * `double pendulumOffset`: where the pendulum arc starts around a circle
+ * `double velocity`: the speed with which the angle progresses: a velocity of e.g. 2 completes a turn in half
+ * the time, so a `Vector(unitOfTime: ClockAngle.second, velocity: 2)` will
  */
 class Vector {
   static const double _TWO_PI = Math.pi * 2;
