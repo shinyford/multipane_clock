@@ -32,16 +32,16 @@ class ClockAngle {
     function: (DateTime time) => time.millisecond / 1000.0,
   );
   static ClockAngle second = ClockAngle(
-    calculator: AngleCalculator(period: Duration(minutes: 1)),
+    function: (DateTime time) => (time.second + ClockAngle.millisecond.at(time)) / 60.0,
   );
   static ClockAngle minute = ClockAngle(
-    calculator: AngleCalculator(period: Duration(hours: 1)),
+    function: (DateTime time) => (time.minute + ClockAngle.second.at(time)) / 60.0,
   );
   static ClockAngle hour = ClockAngle(
-    calculator: AngleCalculator(period: Duration(hours: 12)),
+    function: (DateTime time) => ((time.hour % 12) + ClockAngle.minute.at(time)) / 12.0,
   );
   static ClockAngle hour24 = ClockAngle(
-    calculator: AngleCalculator(period: Duration(days: 1)),
+    function: (DateTime time) => (time.hour + ClockAngle.minute.at(time)) / 24.0,
   );
   static ClockAngle meridien = ClockAngle(
     function: (DateTime time) => ((time.hour > 11 ? 1 : 0) + ClockAngle.hour.at(time)) / 2.0,

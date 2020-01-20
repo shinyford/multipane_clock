@@ -14,8 +14,8 @@ import 'package:multipane_clock/multipane_clock.dart';
  *
  * `ClockAngle clockAngle`: the time unit to use to calculate the angle, according to the current time
  * `double angularOffset`: the amount to add to the current angle before applying a velocity, allowing
- * a time to effectively look like its future or past by some degree. This is used, * for example, in
- * the Fluttsky Orloj, where the start of a pendulum curve for one dial needs to align to Dec 21 rather
+ * a time to effectively look like its future or past by some degree. This is used, for example, in
+ * the Flutsky Orloj, where the start of a pendulum curve for one dial needs to align to Dec 21 rather
  * than Jan 1, the default.
  * `double radius`: the radius of the circle made by the vector; its distance
  * `double horizontal`, `double vertical`: the horizontal and vertical radii when the vector describes
