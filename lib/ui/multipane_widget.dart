@@ -20,10 +20,9 @@ class MultipaneWidget extends StatefulWidget {
 class _MultipaneWidgetState extends State<MultipaneWidget> {
   static const Duration _UPDATE_PERIOD = const Duration(milliseconds: 30);
 
+  InForegroundRepeater _repeater;
   Iterable<Pane> _panes;
   DateTime _time;
-  InForegroundRepeater _repeater;
-  Rect _screen;
 
   Clockface get face => widget.face;
 
@@ -49,8 +48,8 @@ class _MultipaneWidgetState extends State<MultipaneWidget> {
 
   void _createPanes() {
     final Size size = MediaQuery.of(context).size;
-    _screen = _availableScreen(size);
-    _panes = face.generate(_screen);
+    final Rect screen = _availableScreen(size);
+    _panes = face.generate(screen);
   }
 
   Rect _availableScreen(Size size) {
