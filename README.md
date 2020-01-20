@@ -8,7 +8,7 @@ A flutter clock engine based on the concept of overlapping panes rotated relativ
 
 The basic clock engine allows for many different clock faces and behaviours to be modelled. Three examples are provided.
 
-> In proper use the clock face shown would be selected by the device owner. Since the rules of the Flutter Clock competition rules state that no user interaction with the clock is allowed, this build simply cycles through the available faces, allowing about 15 seconds on each.
+> In proper use the clock face shown would be selected by the device owner. Since the Flutter Clock competition rules state that no user interaction with the clock is allowed, this build simply cycles through the available faces, pausing for a short while on each.
 
 ### Paper Cogs
 
@@ -40,11 +40,9 @@ A simulation of the [Pražský Orloj, or Prague Astronomical Clock](http://www.o
 
  Some 'bouncy' instances are also provided, giving a delayed change in angle to mimic the movement of watch hands and e.g. am/pm discs.
 
- > The naming of these instances is a bit anti-intuitive, since hands for a given time unit take the next higher unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes an hour; an hour hand takes a meridien; and so on (at least conceptually).
+ >The naming of these instances is possibly a bit confusing, since hands for a given time unit take the next higher unit's worth of time to go round a clock: a second hand takes a minute; a minute hand takes an hour; an hour hand takes a meridien; and so on (at least conceptually).
 
- Most `ClockAngle`s will simply wrap an `AngleCalculator`. Some, notably the bouncy and `dayOfYear` timings, have more specialised methods.
-
->Note that throughout this project angles are represented in a somewhat unorthodox manner, as fractions of a full circle: 0 <= angle < 1 (they are only converted to radians in widgets at the point of rendering). This allows proportions of time periods and calculated angles to be used interchangeably.
+>Note that throughout this project angles are represented in a somewhat unorthodox manner, as fractions of a full circle: 0 <= angle < 1, which allows proportions of time periods and calculated angles to be used interchangeably. These circadian angles (well, it's a name) are only converted to radians at the point of rendering or trigonometric calculation.
 
 ### `AngleCalculator`
 
@@ -58,21 +56,25 @@ A container for an image which can be rotated and offset from its start position
 
 A representation of an offset from a current position, comprising a distance and an angle calculated from a `DateTime` instance.
 
-`Vector`s by default rotate continually in a circle; but by specifying an arc, the proportion of a circle to cover, a `Vector` can be made to oscillate back and forth across that segment of the full circle as per a pendulum.
+`Vector`s by default rotate continually in a circle; but by specifying a `pendulumArc`, being the proportion of a circle to cover, a `Vector` can be made to oscillate back and forth across that segment of the full circle as per a pendulum.
 
 ### `Rotation`
 
 A specialisation of a `Vector`, with zero offset, used to specify the rotation of a pane's image during rendering.
 
+### `InForegroundRepeater`
+
+A utility to create and manage a repeating timer, cancelling and restarting the time in relation to the app's activity and foregroundedness.
+
 ## Licenses
 
 ### Source Code
 
-Source code is originated by [Nic Ford](https://github.com/shinyford/), and licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+Source code is originated by [Nic Ford](https://github.com/shinyford/), and licensed under the [Apache 2.0 License](LICENSE).
 
 ### Images
 
-All images are licensed for reuse with modification. Where not listed below, images are cackhandedly created by [Nic Ford](https://github.com/shinyford/), and also licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+All images are licensed for reuse with modification. Where not listed below, images are cackhandedly created by [Nic Ford](https://github.com/shinyford/), and also licensed under the [Apache 2.0 License](LICENSE).
 
 - Flutsky Orloj
   - Dials, hands, sun, moon: https://publicdomainvectors.org/en/free-clipart/Prague-astronomical-clock/72025.html
