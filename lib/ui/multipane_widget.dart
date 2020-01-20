@@ -49,7 +49,7 @@ class _MultipaneWidgetState extends State<MultipaneWidget> {
   void _createPanes() {
     final Size size = MediaQuery.of(context).size;
     final Rect screen = _availableScreen(size);
-    _panes = face.generate(screen);
+    _panes = face.createPanesFor(screen);
   }
 
   Rect _availableScreen(Size size) {

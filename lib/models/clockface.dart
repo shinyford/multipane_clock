@@ -11,6 +11,6 @@ import 'package:multipane_clock/multipane_clock.dart';
  * An abstract class for clock face definition.
  */
 abstract class Clockface {
-  Iterable<Pane> generate(Rect screen);
+  Iterable<Pane> createPanesFor(Rect screen);
   DateTime get time => DateTime.now();
 }

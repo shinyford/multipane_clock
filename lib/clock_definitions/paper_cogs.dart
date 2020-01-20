@@ -13,7 +13,7 @@ import 'package:multipane_clock/multipane_clock.dart';
 class PaperCogs extends Clockface {
 
   @override
-  Iterable<Pane> generate(Rect screen) =>
+  Iterable<Pane> createPanesFor(Rect screen) =>
     [
       Pane(
         image: const AssetImage('assets/images/paper_cogs/cogs.jpg'),

@@ -27,7 +27,7 @@ class FlutskyOrloj extends Clockface {
   DateTime get time => TZDateTime.now(_prague);
 
   @override
-  Iterable<Pane> generate(Rect screen) =>
+  Iterable<Pane> createPanesFor(Rect screen) =>
     [
       Pane(
         image: const AssetImage('assets/images/unobservant_astronaut/stars.jpg'),
