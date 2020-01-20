@@ -1,8 +1,6 @@
 // Copyright (c) 2020, Nic Ford.  All rights reserved. Use of this source code is
 // governed by an Apache-2.0 license that can be found in the LICENSE file.
 
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:multipane_clock/multipane_clock.dart';
 
@@ -20,38 +18,21 @@ class MulticlockWidget extends StatefulWidget {
   _MulticlockWidgetState createState() => _MulticlockWidgetState();
 }
 
-class _MulticlockWidgetState extends State<MulticlockWidget> with WidgetsBindingObserver {
+class _MulticlockWidgetState extends State<MulticlockWidget> {
   int _clockIndex = 0;
-  Timer _timer;
+  InForegroundRepeater _repeater;
 
   @override
   void initState() {
     super.initState();
-    _timer = _createTimer();
-    WidgetsBinding.instance.addObserver(this);
+    _repeater = InForegroundRepeater(period: widget.faceTime, onTick: _updateClockIndex);
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
-    WidgetsBinding.instance.removeObserver(this);
+    _repeater?.cancel();
     super.dispose();
   }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    _timer?.cancel();
-    if (state == AppLifecycleState.resumed) {
-      _timer = _createTimer();
-    } else {
-      _timer = null;
-    }
-  }
-
-  Timer _createTimer() =>
-      Timer.periodic(widget.faceTime, _updateClockIndex);
 
   void _updateClockIndex(_) {
     setState(() => _clockIndex = (_clockIndex + 1) ); //% widget.clocks.length);

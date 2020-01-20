@@ -13,6 +13,7 @@ export 'models/clockface.dart';
 export 'models/pane.dart';
 export 'models/vector.dart';
 
+export 'ui/in_foreground_repeater.dart';
 export 'ui/multiclock_widget.dart';
 export 'ui/multipane_widget.dart';
 export 'ui/pane_widget.dart';

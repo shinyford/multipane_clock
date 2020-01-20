@@ -1,7 +1,6 @@
 // Copyright (c) 2020, Nic Ford.  All rights reserved. Use of this source code is
 // governed by an Apache-2.0 license that can be found in the LICENSE file.
 
-import 'dart:async';
 import 'dart:math' as Math;
 
 import 'package:flutter/material.dart';
@@ -18,12 +17,12 @@ class MultipaneWidget extends StatefulWidget {
   _MultipaneWidgetState createState() => _MultipaneWidgetState();
 }
 
-class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingObserver {
-  static const int _UPDATE_PERIOD_MS = 30;
+class _MultipaneWidgetState extends State<MultipaneWidget> {
+  static const Duration _UPDATE_PERIOD = const Duration(milliseconds: 30);
 
   Iterable<Pane> _panes;
   DateTime _time;
-  Timer _updateTimer;
+  InForegroundRepeater _repeater;
   Rect _screen;
 
   Clockface get face => widget.face;
@@ -32,11 +31,8 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
   void initState() {
     super.initState();
 
-    // deal with foregrounding/backgrounding via `didChangeAppLifecycleState` method
-    WidgetsBinding.instance.addObserver(this);
-
     _time = face.time;
-    _updateTimer = _createUpdateTimer();
+    _repeater = InForegroundRepeater(period: _UPDATE_PERIOD, onTick: _updateTime);
   }
 
   @override
@@ -47,23 +43,9 @@ class _MultipaneWidgetState extends State<MultipaneWidget> with WidgetsBindingOb
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    _updateTimer?.cancel();
+    _repeater?.cancel();
     super.dispose();
   }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    _updateTimer?.cancel();
-    if (state == AppLifecycleState.resumed) {
-      _updateTimer = _createUpdateTimer();
-    } else {
-      _updateTimer = null;
-    }
-  }
-
-  Timer _createUpdateTimer() =>
-      Timer.periodic(Duration(milliseconds: _UPDATE_PERIOD_MS), _updateTime);
 
   void _createPanes() {
     final Size size = MediaQuery.of(context).size;
